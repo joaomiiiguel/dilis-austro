@@ -92,7 +92,7 @@
       
 
       <!--Cena Entrada-->
-      <a-entity id="cenaEntrada" visible="true" >
+      <a-entity class="cena" id="cenaEntrada" visible="true">
 
         <a-sky
           id="image-360"
@@ -108,6 +108,7 @@
             height="0.5"
             color="#FFF"
             onclick="mudarCena('cenaSala')"
+            event-set__fade="_event: click; _target:#cenaEntrada; components.material.material.opacity: 0"
             event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
             event-set__mouseleave="scale: 1 1 1; color:#fff"
           ></a-image>
@@ -119,7 +120,7 @@
       </a-entity>
 
       <!--Cena Centro da Sala-->
-      <a-entity id="cenaSala" visible="false" >
+      <a-entity id="cenaSala" visible="false"  >
         <a-sky
           src="#salaCentro"
           radius="30"
@@ -199,7 +200,7 @@
       </a-entity>
 
       <!--Cena Vista da Sala-->
-      <a-entity id="cenaVistaSala" visible="false">
+      <a-entity class="cena" id="cenaVistaSala" visible="false" material="opacity: 0">
         <a-sky
           src="#salaVista"
           radius="30"
@@ -214,6 +215,7 @@
             height="0.5"
             color="#FFF"
             onclick="mudarCena('cenaCorredor')"
+            event-set__FadeIn="property: material.opacity; _target:#cenaVistaSala; to: 0; startEvents: click; dur: 500"
             event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
             event-set__mouseleave="scale: 1 1 1; color:#fff"
           ></a-image>
@@ -241,7 +243,7 @@
       </a-entity>
 
       <!--Cena Corredor-->
-      <a-entity id="cenaCorredor" visible="false">
+      <a-entity class="cena" id="cenaCorredor" visible="false">
         <a-sky
           src="#corredor"
           radius="30"
@@ -351,7 +353,7 @@
       </a-entity>
 
       <!--Cena Cozinha-->
-      <a-entity id="cenaCozinha" visible="false">
+      <a-entity class="cena" id="cenaCozinha" visible="false">
         <a-sky
           src="#cozinha"
           radius="30"
@@ -392,7 +394,7 @@
       </a-entity>
 
       <!--Cena Area de Servico-->
-      <a-entity id="cenaServico" visible="false">
+      <a-entity class="cena" id="cenaServico" visible="false">
         <a-sky
           src="#servico"
           radius="30"
@@ -417,7 +419,7 @@
       </a-entity>
       
       <!--Cena Quarto Principal-->
-      <a-entity id="cenaQuartoP" visible="false">
+      <a-entity class="cena" id="cenaQuartoP" visible="false">
         <a-sky
           src="#quartoP"
           radius="30"
@@ -475,7 +477,7 @@
       </a-entity>
       
       <!--Cena Suite do Quarto-->
-      <a-entity id="cenaSuite" visible="false">
+      <a-entity class="cena" id="cenaSuite" visible="false">
         <a-sky
           src="#suite"
           radius="30"
@@ -501,7 +503,7 @@
       </a-entity>
       
       <!--Cena Vista do Quarto-->
-      <a-entity id="cenaVistaQuarto" visible="false">
+      <a-entity class="cena" id="cenaVistaQuarto" visible="false">
         <a-sky
           src="#vistaQuarto"
           radius="30"
@@ -544,7 +546,7 @@
       </a-entity>
       
       <!--Cena Banheiro-->
-      <a-entity id="cenaBanheiro" visible="false">
+      <a-entity class="cena" id="cenaBanheiro" visible="false">
         <a-sky
           src="#banheiro"
           radius="30"
@@ -586,7 +588,7 @@
       </a-entity>
       
       <!--Cena Quarto 1-->
-      <a-entity id="cenaQuarto1" visible="false">
+      <a-entity class="cena" id="cenaQuarto1" visible="false">
         <a-sky
           src="#Quarto1"
           radius="30"
@@ -629,7 +631,7 @@
       </a-entity>
       
       <!--Cena Quarto 1 Vista-->
-      <a-entity id="cenaQuarto1Vista" visible="false">
+      <a-entity class="cena" id="cenaQuarto1Vista" visible="false">
         <a-sky
           src="#Quarto1Vista"
           radius="30"
@@ -656,7 +658,7 @@
       </a-entity>
       
       <!--Cena Quarto 2 Entrada-->
-      <a-entity id="cenaEntrQuarto2" visible="false">
+      <a-entity class="cena" id="cenaEntrQuarto2" visible="false">
         <a-sky
           src="#Quarto2Ent"
           radius="30"
@@ -714,7 +716,7 @@
       </a-entity>
       
       <!--Cena Quarto 2-->
-      <a-entity id="cenaQuarto2" visible="false">
+      <a-entity class="cena" id="cenaQuarto2" visible="false">
         <a-sky
           src="#Quarto2"
           radius="30"
@@ -756,7 +758,7 @@
       </a-entity>
       
       <!--Cena Quarto 2 Vista-->
-      <a-entity id="cenaQuarto2Vista" visible="false">
+      <a-entity class="cena" id="cenaQuarto2Vista" visible="false">
         <a-sky
           src="#Quarto2Vista"
           radius="30"
@@ -791,17 +793,22 @@
     <script type="text/javascript">
 
         var CenaAtual = "cenaEntrada";
+        
 
         //Função pegar o valor da caixa select
         function getSelectValue(){
             var selectedValue = document.getElementById("rooms").value;
             mudarCena(selectedValue);
         }
-
-        function mudarCena(CenaAlvo){
+        function sleep(ms) {
+          return new Promise(
+            resolve => setTimeout(resolve, ms)
+          );
+        }
+        async function mudarCena(CenaAlvo){
+            await sleep(2000);
             document.getElementById(CenaAtual).setAttribute("visible", "false");    
             document.getElementById(CenaAlvo).setAttribute("visible", "true");
-
 
             CenaAtual = CenaAlvo;
 
