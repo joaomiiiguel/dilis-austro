@@ -55,7 +55,7 @@
       </a-assets>
 
       
-      <a-entity id="IDCam" position="0 0 0" rotation="0 90 0" touch-look-controls>
+      <a-entity id="IDCam" position="0 0 0" rotation="0 90 0">
         <a-camera
           id="cam"
           user-height="1.2"
@@ -64,6 +64,14 @@
           look-controls
           cursor="rayOrigin: mouse">
         </a-camera>
+        <!--<a-sphere
+          id="fade"
+          radius="2"
+          position="0 1.8 -0.5"
+          visible='false'
+          
+          >
+        </a-sphere>-->
       </a-entity>
       
       <div class="custom-select">
@@ -97,6 +105,8 @@
           src="#corredorEntrada"
           radius="30"
           rotation="0 -45 0"
+          animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 500; startEvents: fade"
+          animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"
         ></a-sky>
         <!--Ponto para Entrar-->
         <a-entity position="-10 -1 0" look-at="#cam">
@@ -105,8 +115,9 @@
             width="0.5"
             height="0.5"
             color="#FFF"
+            event-set__click="_target: #image-360; _delay: 80; material.color:#000"
+            proxy-event="event: click; to: #corredorEntrada; as: fade"
             onclick="mudarCena('cenaSala')"
-            event-set__fade="_event: click; _target:#cenaEntrada; components.material.material.opacity: 0"
             event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
             event-set__mouseleave="scale: 1 1 1; color:#fff"
           ></a-image>
@@ -114,7 +125,11 @@
             text="width:  5;  value:  Entrar; align: center "
             position="0 -0.5 0"
           ></a-text>
+
+
+          
         </a-entity>
+        
       </a-entity>
 
       <!--Cena Centro da Sala-->
@@ -803,15 +818,18 @@
             resolve => setTimeout(resolve, ms)
           );
         }
+
         async function mudarCena(CenaAlvo){
-            await sleep(2000);
+          await sleep(85);
             document.getElementById(CenaAtual).setAttribute("visible", "false");    
             document.getElementById(CenaAlvo).setAttribute("visible", "true");
-
+            
             CenaAtual = CenaAlvo;
-
+            
             console.log("Cena atual é " + CenaAtual);
             console.log("Cena de destino é " + CenaAlvo);
         }
+
+       
 
     </script>
