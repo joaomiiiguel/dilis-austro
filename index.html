@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    
+    <script src="a-frame-touch-look-controls.js"></script>
     <style>
       .custom-select{
         position: fixed;
@@ -22,15 +22,12 @@
       .custom-select>* {
         pointer-events: auto;
       }
-      .select-selected {
-        background-color: DodgerBlue;
-      }
-      .custom-select option{
-        padding: 20px;
-      }
-      select{
+      #rooms{
           height: 30px;
-          padding: 5px;
+          padding: 5px 12px;
+          border-radius: 5px;
+          cursor: pointer;
+          background-color:rgba(255, 255, 255, 0.5);
       }
     </style>
     
@@ -58,7 +55,7 @@
       </a-assets>
 
       
-      <a-entity id="IDCam" position="0 0 0" rotation="0 90 0" >
+      <a-entity id="IDCam" position="0 0 0" rotation="0 90 0" touch-look-controls>
         <a-camera
           id="cam"
           user-height="1.2"
@@ -71,6 +68,7 @@
       
       <div class="custom-select">
       <select id="rooms" name="rooms" onchange="getSelectValue()">
+        <option selected disabled>Selecione um cômodo:</option>
         <option value="cenaEntrada">Entrada</option>
         <option value="cenaSala">Sala</option>
         <option value="cenaVistaSala">Sala - Vista</option>
