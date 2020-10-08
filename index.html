@@ -8,7 +8,9 @@
     <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="a-frame-touch-look-controls.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
     <style>
       .custom-select{
         position: fixed;
@@ -29,12 +31,59 @@
           cursor: pointer;
           background-color:rgba(255, 255, 255, 0.5);
       }
+      #loaderCont {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50%;
+      }
+      #loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 60px;
+        height: 60px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      #myDiv {
+        display: none;
+      }
     </style>
+
+    <script>
+      var myVar;
+
+      function loadPage() {
+        myVar = setTimeout(showPage, 5000);
+      }
+
+      function showPage() {
+        document.getElementById("loaderCont").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+      }
+    </script>
     
   </head>
-  <body>
-    
-    <a-scene vr-mode-ui="enabled: false" renderer="antialias: true">
+  <body onload="loadPage()">
+    <div id="loaderCont">
+      <div id="loader"></div>
+      <h1 style="color: #3498db;">Carregando...</h1>
+    </div>
+    <a-scene style="display:none;" id="myDiv" vr-mode-ui="enabled: false" renderer="antialias: true">
       <a-assets>
         <img id="marco" src="https://cdn.glitch.com/07e6f369-c779-4206-a66d-caec139b3eb9%2Fpiscina_icon_B.png?v=1601656746275" />
         <img id="corredorEntrada" src="assets\1801\Entrada_1.JPG" />
@@ -62,16 +111,9 @@
           camera="fov:  40; zoom:  0.6"
           wasd-controls="enabled:false"
           look-controls
+          movement-controls
           cursor="rayOrigin: mouse">
         </a-camera>
-        <!--<a-sphere
-          id="fade"
-          radius="2"
-          position="0 1.8 -0.5"
-          visible='false'
-          
-          >
-        </a-sphere>-->
       </a-entity>
       
       <div class="custom-select">
@@ -95,28 +137,37 @@
       </select>
       
     </div>
+
+    <!--Cena Fade-->
+    <a-entity class="cena" id="cenaFade" visible="false" >
+
+      <a-sky
+        color="black"
+        radius="20"
+        animation__fade="property: material.opacity; type: opacity; from: 1; to: 0; dur: 200"
+        animation__fadeOut="property: material.opacity; type: opacity; from: 0; to: 1; delay:250; dur: 300"
+      ></a-sky>
       
+    </a-entity>
 
       <!--Cena Entrada-->
-      <a-entity class="cena" id="cenaEntrada" visible="true">
+      <a-entity class="cena" id="cenaEntrada" visible="true" >
 
         <a-sky
-          id="image-360"
           src="#corredorEntrada"
           radius="30"
           rotation="0 -45 0"
-          animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 500; startEvents: fade"
-          animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"
+          
+          
         ></a-sky>
         <!--Ponto para Entrar-->
         <a-entity position="-10 -1 0" look-at="#cam">
           <a-image
             src="#marco"
+            class="button"
             width="0.5"
             height="0.5"
             color="#FFF"
-            event-set__click="_target: #image-360; _delay: 80; material.color:#000"
-            proxy-event="event: click; to: #corredorEntrada; as: fade"
             onclick="mudarCena('cenaSala')"
             event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
             event-set__mouseleave="scale: 1 1 1; color:#fff"
@@ -820,14 +871,16 @@
         }
 
         async function mudarCena(CenaAlvo){
-          await sleep(85);
-            document.getElementById(CenaAtual).setAttribute("visible", "false");    
-            document.getElementById(CenaAlvo).setAttribute("visible", "true");
-            
-            CenaAtual = CenaAlvo;
-            
-            console.log("Cena atual é " + CenaAtual);
-            console.log("Cena de destino é " + CenaAlvo);
+          
+          document.getElementById('cenaFade').setAttribute("visible", "true");
+          console.log("Cena Fade Ativada");
+          document.getElementById(CenaAtual).setAttribute("visible", "false");
+          await sleep(100);
+          document.getElementById(CenaAlvo).setAttribute("visible", "true");
+          document.getElementById('cenaFade').setAttribute("visible", "false");
+          console.log("Cena atual é " + CenaAtual);
+          CenaAtual = CenaAlvo;
+          console.log("Cena de destino é " + CenaAlvo);
         }
 
        
