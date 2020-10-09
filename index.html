@@ -54,6 +54,13 @@
         <img id="Churrasco1" src="assets\AreasComuns\AreaChurrasco1.JPG" />
         <img id="Churrasco_2" src="assets\AreasComuns\AreaChurrasco2.JPG" />
         <img id="Zen_1" src="assets\AreasComuns\AreaZen2.JPG" />
+        <img id="Kids" src="assets\AreasComuns\AreaKids2.JPG" />
+        <img id="Brinquedoteca" src="assets\AreasComuns\Brinquedoteca.JPG" />
+        <img id="Jogos1" src="assets\AreasComuns\SalaoDeJogos1.JPG" />
+        <img id="Jogos2" src="assets\AreasComuns\SalaoDeJogos2.JPG" />
+        <img id="Academia" src="assets\AreasComuns\Academia2.JPG" />
+        <img id="Gourmet" src="assets\AreasComuns\AreaGourmet.JPG" />
+        <img id="Festa" src="assets\AreasComuns\SalaoDeFestas.JPG" />
         
         
       </a-assets>
@@ -498,7 +505,7 @@
       </a-entity>
 
       <!--Cena Area Zen-->
-      <a-entity class="cena" id="cenaZen" visible="true"  >
+      <a-entity class="cena" id="cenaZen" visible="false"  >
         <a-sky
           src="#Zen_1"
           radius="50"
@@ -531,7 +538,7 @@
             width="0.5"
             height="0.5"
             color="#FFF"
-            onclick="mudarCena('cenaVistaSala')"
+            onclick="mudarCena('cenaKids')"
             event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
             event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
             proxy-event="event: click; to: #cam; as: fade"
@@ -544,6 +551,325 @@
           ></a-text>
         </a-entity>
       </a-entity>
+
+      <!--Cena Area Kids-->
+      <a-entity class="cena" id="cenaKids" visible="false"  >
+        <a-sky
+          src="#Kids"
+          radius="50"
+          rotation="0 -50 0"
+        ></a-sky>
+
+        <!--Ponto para Entrada Piscina-->
+        <a-entity position="-7 1 1.8" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaZen')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:  Area Zen; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+
+        <!--Ponto para Espaço Zen-->
+        <a-entity position="-3 1 4" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaBrinquedoteca')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+            
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:  Brinquedoteca; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+      </a-entity>
+
+      <!--Cena Brinquedoteca-->
+      <a-entity class="cena" id="cenaBrinquedoteca" visible="false"  >
+        <a-sky
+          src="#Brinquedoteca"
+          radius="50"
+          rotation="0 -50 0"
+        ></a-sky>
+
+        <!--Ponto para Entrada Piscina-->
+        <a-entity position="-7 1 1.8" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaZen')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:  Area Zen; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+
+        <!--Ponto para Espaço Zen-->
+        <a-entity position="-3 1 4" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaBrinquedoteca')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+            
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:  Brinquedoteca; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+      </a-entity>
+
+      <!--Cena Jogos 1-->
+      <a-entity class="cena" id="cenaJogos1" visible="false"  >
+        <a-sky
+          src="#Jogos1"
+          radius="50"
+          rotation="0 -50 0"
+        ></a-sky>
+
+        <!--Ponto para Entrada Piscina-->
+        <a-entity position="-7 1 1.8" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaZen')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:  Area Zen; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+
+        <!--Ponto para Espaço Zen-->
+        <a-entity position="-3 1 4" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaBrinquedoteca')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+            
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:  Brinquedoteca; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+      </a-entity>
+
+      <!--Cena Jogos 2-->
+      <a-entity class="cena" id="cenaJogos2" visible="false"  >
+        <a-sky
+          src="#Jogos2"
+          radius="50"
+          rotation="0 -50 0"
+        ></a-sky>
+
+        <!--Ponto para Entrada Piscina-->
+        <a-entity position="-7 1 1.8" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaZen')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:  Area Zen; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+
+        <!--Ponto para Espaço Zen-->
+        <a-entity position="-3 1 4" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaBrinquedoteca')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+            
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:  Brinquedoteca; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+      </a-entity>
+
+      <!--Cena Academia-->
+      <a-entity class="cena" id="cenaAcademia" visible="false"  >
+        <a-sky
+          src="#Academia"
+          radius="50"
+          rotation="0 -50 0"
+        ></a-sky>
+
+        <!--Ponto para Entrada Piscina-->
+        <a-entity position="-7 1 1.8" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaZen')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:  Area Zen; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+
+        <!--Ponto para Espaço Zen-->
+        <a-entity position="-3 1 4" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaBrinquedoteca')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+            
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:  Brinquedoteca; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+      </a-entity>
+
+      <!--Cena Gourmet-->
+      <a-entity class="cena" id="cenaGourmet" visible="true"  >
+        <a-sky
+          src="#Gourmet"
+          radius="50"
+          rotation="0 -50 0"
+        ></a-sky>
+
+        <!--Ponto para Festa-->
+        <a-entity position="-7 0 -1" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaFestas')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:  Sala de Festa; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+
+      </a-entity>
+
+      <!--Cena Festas-->
+      <a-entity class="cena" id="cenaFestas" visible="false"  >
+        <a-sky
+          src="#Festa"
+          radius="50"
+          rotation="0 -50 0"
+        ></a-sky>
+
+        <!--Ponto para Gourmet-->
+        <a-entity position="-5 1 1" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaGourmet')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+            
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:Area Gourmet; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+
+        <!--Ponto para Gourmet-->
+        <a-entity position="-5 1 -1" look-at="#cam">
+          <a-image
+            src="#marco"
+            width="0.5"
+            height="0.5"
+            color="#FFF"
+            onclick="mudarCena('cenaElevador')"
+            event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
+            event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
+            proxy-event="event: click; to: #cam; as: fade"
+            
+          ></a-image>
+          
+          <a-text
+            text="width:  5;  value:Elevador; align: center "
+            position="0 -0.5 0"
+          ></a-text>
+        </a-entity>
+      </a-entity>
+
 
 
       <script type="text/javascript">
