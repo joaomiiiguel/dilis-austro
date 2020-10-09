@@ -64,10 +64,6 @@
         <img id="Festa" src="assets\AreasComuns\SalaoDeFestas.JPG" />
       </a-assets>
 
-      <a-entity hand-controls>
-        <a-entity fps-counter></a-entity>
-      </a-entity>
-
       
       <a-entity id="IDCam" position="0 0 0" rotation="0 90 0">
         <a-camera
@@ -95,7 +91,7 @@
     </div>
 
       <!--Cena Entrada Portaria-->
-      <a-entity class="cena" id="cenaPortaria" visible="false" >
+      <a-entity class="cena" id="cenaPortaria" visible="true" >
 
         <a-sky
           src="#CondEntrada"
@@ -221,7 +217,7 @@
       </a-entity>
 
       <!--Cena Elevador-->
-      <a-entity class="cena" id="cenaElevador" visible="true">
+      <a-entity class="cena" id="cenaElevador" visible="false">
         <a-sky
           src="#Elevador"
           radius="30"
@@ -267,7 +263,7 @@
           </a-entity>
 
           <!--UI NAV-->
-        <a-entity look-at="#cam" position="3 1 -3">
+        <a-entity look-at="#cam" position="6 1.5 -4">
         <!--Ponto para Apto 1801-->
 
             <!--Ponto para Aptos -->
@@ -334,61 +330,70 @@
             <!--Lista de Lazer-->
             <a-entity id="LazerText1" position="1.2 0 -0.1" scale="0.5 0.5 1"
             text="value: Academia; align: center; width:4; color:#000; zOffset:0.06"
-            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaAcademia')"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+
             <a-entity id="LazerText2" position="1.2 0 -0.1" scale="0.5 0.5 1"
             text="value: Brinquedoteca; align: center; width:4; color:#000; zOffset:0.06"
-            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaBrinquedoteca')"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+
             <a-entity id="LazerText3" position="1.2 0 -0.1" scale="0.5 0.5 1"
             text="value: Churrasqueira; align: center; width:4; color:#000; zOffset:0.06"
-            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaChurrasco')"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+
             <a-entity id="LazerText4" position="1.2 0 -0.1" scale="0.5 0.5 1"
             text="value: Espaco Kids; align: center; width:4; color:#000; zOffset:0.06"
-            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaKids')"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+
             <a-entity id="LazerText5" position="1.2 0 -0.1" scale="0.5 0.5 1"
             text="value: Espaco Zen; align: center; width:4; color:#000; zOffset:0.06"
-            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaZen')"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+
             <a-entity id="LazerText6" position="1.2 0 -0.1" scale="0.5 0.5 1"
             text="value: Espaco Kids; align: center; width:4; color:#000; zOffset:0.06"
             geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+
             <a-entity id="LazerText7" position="1.2 0 -0.1" scale="0.5 0.5 1"
             text="value: Espaco Gourmet; align: center; width:4; color:#000; zOffset:0.06"
-            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaGourmet')"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+
             <a-entity id="LazerText8" position="1.2 0 -0.1" scale="0.5 0.5 1"
             text="value: Sala de Festas; align: center; width:4; color:#000; zOffset:0.06"
-            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaFestas')"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+
             <a-entity id="LazerText9" position="1.2 0 -0.1" scale="0.5 0.5 1"
             text="value: Sala de Jogos; align: center; width:4; color:#000; zOffset:0.06"
-            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaJogos1')"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+
             <a-entity id="LazerText10" position="1.2 0 -0.1" scale="0.5 0.5 1"
             text="value: Piscina; align: center; width:4; color:#000; zOffset:0.06"
-            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaPiscina')"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
