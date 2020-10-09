@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
     <script src="https://unpkg.com/aframe-fps-counter-component/dist/aframe-fps-counter-component.min.js"></script> 
+    <script src="https://unpkg.com/aframe-animation-component@5.1.2/dist/aframe-animation-component.min.js"></script>
     <style>
       .custom-select{
         position: fixed;
@@ -61,8 +62,6 @@
         <img id="Academia" src="assets\AreasComuns\Academia2.JPG" />
         <img id="Gourmet" src="assets\AreasComuns\AreaGourmet.JPG" />
         <img id="Festa" src="assets\AreasComuns\SalaoDeFestas.JPG" />
-        
-        
       </a-assets>
 
       <a-entity hand-controls>
@@ -222,7 +221,7 @@
       </a-entity>
 
       <!--Cena Elevador-->
-      <a-entity class="cena" id="cenaElevador" visible="false">
+      <a-entity class="cena" id="cenaElevador" visible="true">
         <a-sky
           src="#Elevador"
           radius="30"
@@ -237,7 +236,7 @@
               width="0.5"
               height="0.5"
               color="#FFF"
-              onclick="mudarCena('cenaEstacionamento')"
+              onclick="mudarCena('cenaEstacionamentoBaixo')"
               event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
               event-set__mouseleave="scale: 1 1 1; color:#fff"
               proxy-event="event: click; to: #cam; as: fade"
@@ -268,28 +267,131 @@
           </a-entity>
 
           <!--UI NAV-->
-        <a-entity look-at="#cam" position="4 1 -3">
+        <a-entity look-at="#cam" position="3 1 -3">
         <!--Ponto para Apto 1801-->
-        <a-entity position="0.6 0.4 0"  text="value:Selecione o local:;align:center; width:2;"></a-entity>
-        <a-entity  scale="0.5 0.5 1" 
-          text="value: Apartamentos; align: center; width:5; color:#000"
-          geometry="primitive: plane; width:2; height:1"
-          material="color:#EFEFEF"
-          link="href: 1801.html"
-          event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
-          event-set__mouseleave="_event: mouseleave; material.color: #EFEFEF"
-          event-set__click="_event: click; material.color: #B4B4B4"
-        ></a-entity>
-        <!--Ponto para Aptos -->
-        <a-entity position="1.2 0 0" scale="0.5 0.5 1"
-        text="value: Area de Lazer; align: center; width:5; color:#000"
-        geometry="primitive: plane; width:2; height:1"
-        material="color:#EFEFEF"
-        link="href: 1801.html"
-        event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
-        event-set__mouseleave="_event: mouseleave; material.color: #EFEFEF"
-        event-set__click="_event: click; material.color: #B4B4B4"
-        ></a-entity>
+
+            <!--Ponto para Aptos -->
+            <a-entity id="AptoText" position="0 0 0" scale="0.5 0.5 1"
+            text="value: Apartamentos; align: center; width:5; color:#000"></a-entity>
+            <!--Plano de fundo do bt-->
+            <a-plane color="#EFEFEF" height="0.5" width="1" 
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #EFEFEF"
+            event-set__click="_event: click; material.color: #B4B4B4"
+            event-set__position="_target:#AptoText1 ; _event: click; animation.property:position; animation.to:0 -0.375 0; animation.easing:easeInOutBack"
+            event-set__position2="_target:#AptoText2 ; _event: click; animation.property:position; animation.to:0 -0.63 0; animation.easing:easeInOutBack; animation.delay:50" 
+            event-set__position3="_target:#AptoText3 ; _event: click; animation.property:position; animation.to:0 -0.88 0; animation.easing:easeInOutBack; animation.delay:100" 
+            event-set__position4="_target:#AptoText4 ; _event: click; animation.property:position; animation.to:0 -1.13 0; animation.easing:easeInOutBack; animation.delay:150" 
+            ></a-plane>
+
+            <!--Lista de Aptos-->
+            <a-entity id="AptoText1" position="0 0 -1" scale="0.5 0.5 1"
+            text="value: Apartamento 1801; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" link="href: 1801.html"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            <!--<a-entity id="AptoText2" position="0 0 -1" scale="0.5 0.5 1"
+            text="value: Apartamento 1901; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            <a-entity id="AptoText3" position="0 0 -1" scale="0.5 0.5 1"
+            text="value: Apartamento 1905; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1"material="color:#999"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            <a-entity id="AptoText4" position="0 0 -1" scale="0.5 0.5 1"
+            text="value: Apartamento 2104; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1"material="color:#999"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>-->
+
+
+            <!--Ponto para Area de Lazer -->
+            <a-entity id="AptoText" position="1.2 0 0" scale="0.5 0.5 1"
+            text="value: Area de Lazer; align: center; width:5; color:#000"></a-entity>
+            <!--Plano de fundo do bt-->
+            <a-plane color="#EFEFEF" height="0.5" width="1"  position="1.2 0 0"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #EFEFEF"
+            event-set__click="_event: click; material.color: #B4B4B4"
+            event-set__positionLazer="_target:#LazerText1 ; _event: click; animation.property:position; animation.to:1.2 -0.375 0; animation.easing:easeInOutBack"
+            event-set__positionLazer2="_target:#LazerText2 ; _event: click; animation.property:position; animation.to:1.2 -0.63 0; animation.easing:easeInOutBack; animation.delay:50" 
+            event-set__positionLazer3="_target:#LazerText3 ; _event: click; animation.property:position; animation.to:1.2 -0.88 0; animation.easing:easeInOutBack; animation.delay:100" 
+            event-set__positionLazer4="_target:#LazerText4 ; _event: click; animation.property:position; animation.to:1.2 -1.13 0; animation.easing:easeInOutBack; animation.delay:150" 
+            event-set__positionLazer5="_target:#LazerText5 ; _event: click; animation.property:position; animation.to:1.2 -1.38 0; animation.easing:easeInOutBack; animation.delay:200" 
+            event-set__positionLazer6="_target:#LazerText6 ; _event: click; animation.property:position; animation.to:1.2 -1.63 0; animation.easing:easeInOutBack; animation.delay:250" 
+            event-set__positionLazer7="_target:#LazerText7 ; _event: click; animation.property:position; animation.to:1.2 -1.88 0; animation.easing:easeInOutBack; animation.delay:300" 
+            event-set__positionLazer8="_target:#LazerText8 ; _event: click; animation.property:position; animation.to:1.2 -2.13 0; animation.easing:easeInOutBack; animation.delay:350" 
+            event-set__positionLazer9="_target:#LazerText9 ; _event: click; animation.property:position; animation.to:1.2 -2.38 0; animation.easing:easeInOutBack; animation.delay:400" 
+            event-set__positionLazer10="_target:#LazerText10 ; _event: click; animation.property:position; animation.to:1.2 -2.63 0; animation.easing:easeInOutBack; animation.delay:450" 
+            ></a-plane>
+
+            <!--Lista de Lazer-->
+            <a-entity id="LazerText1" position="1.2 0 -0.1" scale="0.5 0.5 1"
+            text="value: Academia; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            <a-entity id="LazerText2" position="1.2 0 -0.1" scale="0.5 0.5 1"
+            text="value: Brinquedoteca; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            <a-entity id="LazerText3" position="1.2 0 -0.1" scale="0.5 0.5 1"
+            text="value: Churrasqueira; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            <a-entity id="LazerText4" position="1.2 0 -0.1" scale="0.5 0.5 1"
+            text="value: Espaco Kids; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            <a-entity id="LazerText5" position="1.2 0 -0.1" scale="0.5 0.5 1"
+            text="value: Espaco Zen; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            <a-entity id="LazerText6" position="1.2 0 -0.1" scale="0.5 0.5 1"
+            text="value: Espaco Kids; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            <a-entity id="LazerText7" position="1.2 0 -0.1" scale="0.5 0.5 1"
+            text="value: Espaco Gourmet; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            <a-entity id="LazerText8" position="1.2 0 -0.1" scale="0.5 0.5 1"
+            text="value: Sala de Festas; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            <a-entity id="LazerText9" position="1.2 0 -0.1" scale="0.5 0.5 1"
+            text="value: Sala de Jogos; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            <a-entity id="LazerText10" position="1.2 0 -0.1" scale="0.5 0.5 1"
+            text="value: Piscina; align: center; width:4; color:#000; zOffset:0.06"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaHall')"
+            event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+            event-set__mouseleave="_event: mouseleave; material.color: #999"
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
         </a-entity>
 
         </a-entity>
@@ -793,7 +895,7 @@
       </a-entity>
 
       <!--Cena Gourmet-->
-      <a-entity class="cena" id="cenaGourmet" visible="true"  >
+      <a-entity class="cena" id="cenaGourmet" visible="false"  >
         <a-sky
           src="#Gourmet"
           radius="50"
