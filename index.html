@@ -43,14 +43,16 @@
  
     <a-scene  vr-mode-ui="enabled: false" renderer="antialias: true">
       <a-assets>
-        <img id="logo" src="assets/logo.png">
-        <img id="marco" src="https://cdn.glitch.com/07e6f369-c779-4206-a66d-caec139b3eb9%2Fpiscina_icon_B.png?v=1601656746275" />
-        <img id="CondEntrada" src="assets\AreasComuns\Entrando_1NoPredio.JPG" />
+        <img id="logo" src="assets\AustroFranca-Logo.png">
+        <img id="marco" src="assets\direction2.png" />
+        <img id="CondEntrada" src="assets\AreasComuns\Entrando_1NoPredio.jpg" />
         <img id="CondEntrada2" src="assets\AreasComuns\Entrando_2NoPredio.JPG" />
         <img id="HallEntrada" src="assets\AreasComuns\HallDeEntrada.JPG" />
         <img id="Elevador" src="assets\AreasComuns\Elevador.JPG" />
-        <img id="EstacionamentoCoberto" src="assets\AreasComuns\EscationamentoCoberto.JPG" />
-        <img id="EstacionamentoCima" src="assets\AreasComuns\EscationamentoCima2.JPG" />
+        <img id="Vaga1801" src="assets\AreasComuns\Vaga1801.JPG" />
+        <img id="Vaga1903" src="assets\AreasComuns\Vaga1903.JPG" />
+        <img id="Vaga1905" src="assets\AreasComuns\Vaga1905.JPG" />
+        <img id="Vaga2104" src="assets\AreasComuns\Vaga2104.JPG" />
         <img id="Piscina_1" src="assets\AreasComuns\Piscina1.JPG" />
         <img id="Piscina_2" src="assets\AreasComuns\Piscina2.JPG" />
         <img id="Churrasco1" src="assets\AreasComuns\AreaChurrasco1.JPG" />
@@ -79,8 +81,10 @@
         </a-camera>
         <a-image
             src="#logo"
-            width="0.5"
-            height="0.5"
+            width="1"
+            height="1"
+            position="0 -0.5 0"
+            rotation="-90 0 0"
           ></a-image>
       </a-entity>
       <div class="custom-select">
@@ -237,25 +241,6 @@
           rotation="0 0 0"
         ></a-sky>
         <a-entity >
-          <!--Estacionamento-->
-          <a-entity position="0 -1 -5" look-at="#cam">
-            <a-image
-              src="#marco"
-              class="button"
-              width="0.5"
-              height="0.5"
-              color="#FFF"
-              onclick="mudarCena('cenaEstacionamentoBaixo')"
-              event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-              event-set__mouseleave="scale: 1 1 1; color:#fff"
-              proxy-event="event: click; to: #cam; as: fade"
-            ></a-image>
-            <a-text
-              text="width:  5;  value:  Estacionamento; align: center "
-              position="0 -0.5 0"
-            ></a-text>
-          </a-entity> 
-
           <!--Hall Entrada-->
           <a-entity position="-5 -1 3" look-at="#cam">
             <a-image
@@ -276,7 +261,7 @@
           </a-entity>
 
           <!--UI NAV-->
-        <a-entity look-at="#cam" position="6 1.5 -4">
+        <a-entity look-at="#cam" position="4 1.5 -3">
         <!--Ponto para Apto 1801-->
 
             <!--Ponto para Aptos -->
@@ -294,30 +279,30 @@
             ></a-plane>
 
             <!--Lista de Aptos-->
-            <a-entity id="AptoText1" position="0 0 -1" scale="0.5 0.5 1"
+            <a-entity id="AptoText1" position="0 0 -0.1" scale="0.5 0.5 0.2"
             text="value: Apartamento 1801; align: center; width:4; color:#000; zOffset:0.06"
             geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" link="href: 1801.html"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
-            <a-entity id="AptoText2" position="0 0 -1" scale="0.5 0.5 1"
+            <a-entity id="AptoText2" position="0 0 -0.1" scale="0.5 0.5 0.2"
             text="value: Apartamento 1901; align: center; width:4; color:#000; zOffset:0.06"
             geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" link="href: 1903.html"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
-            <!--<a-entity id="AptoText3" position="0 0 -1" scale="0.5 0.5 1"
+            <a-entity id="AptoText3" position="0 0 -0.1" scale="0.5 0.5 0.2"
             text="value: Apartamento 1905; align: center; width:4; color:#000; zOffset:0.06"
             geometry="primitive: box; width:2; height:0.5; depth:0.1"material="color:#999" link="href: 1905.html"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
-            <a-entity id="AptoText4" position="0 0 -1" scale="0.5 0.5 1"
+            <a-entity id="AptoText4" position="0 0 -0.1" scale="0.5 0.5 0.2"
             text="value: Apartamento 2104; align: center; width:4; color:#000; zOffset:0.06"
-            geometry="primitive: box; width:2; height:0.5; depth:0.1"material="color:#999" link="href: 2104.html"
+            geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" link="href: 2104.html"
             event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
             event-set__mouseleave="_event: mouseleave; material.color: #999"
-            event-set__click="_event: click; material.color: #B4B4B4"></a-entity-->
+            event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
 
 
             <!--Ponto para Area de Lazer -->
@@ -405,13 +390,59 @@
             event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
         </a-entity>
 
+
+          <!--UI Estacionamento-->
+          <a-entity look-at="#cam" position="0 1.5 -5">
+            <!--Ponto para o estacionamento-->
+    
+                <!--Ponto para Aptos -->
+                <a-entity id="EstacText" position="0 0 0" scale="0.5 0.5 1"
+                text="value: Estacionamento; align: center; width:5; color:#000"></a-entity>
+                <!--Plano de fundo do bt-->
+                <a-plane color="#EFEFEF" height="0.5" width="1" 
+                event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+                event-set__mouseleave="_event: mouseleave; material.color: #EFEFEF"
+                event-set__click="_event: click; material.color: #B4B4B4"
+                event-set__position="_target:#EstacText1 ; _event: click; animation.property:position; animation.to:0 -0.375 0; animation.easing:easeInOutBack"
+                event-set__position2="_target:#EstacText2 ; _event: click; animation.property:position; animation.to:0 -0.63 0; animation.easing:easeInOutBack; animation.delay:50" 
+                event-set__position3="_target:#EstacText3 ; _event: click; animation.property:position; animation.to:0 -0.88 0; animation.easing:easeInOutBack; animation.delay:100" 
+                event-set__position4="_target:#EstacText4 ; _event: click; animation.property:position; animation.to:0 -1.13 0; animation.easing:easeInOutBack; animation.delay:150" 
+                ></a-plane>
+    
+                <!--Lista de Aptos-->
+                <a-entity id="EstacText1" position="0 0 -0.1" scale="0.5 0.5 0.2"
+                text="value: Vaga Ap 1801; align: center; width:4; color:#000; zOffset:0.06"
+                geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaVaga1801')"
+                event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+                event-set__mouseleave="_event: mouseleave; material.color: #999"
+                event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+                <a-entity id="EstacText2" position="0 0 -0.1" scale="0.5 0.5 0.2"
+                text="value:  Vaga Ap 1903; align: center; width:4; color:#000; zOffset:0.06"
+                geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaVaga1903')"
+                event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+                event-set__mouseleave="_event: mouseleave; material.color: #999"
+                event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+                <a-entity id="EstacText3" position="0 0 -0.1" scale="0.5 0.5 0.2"
+                text="value:  Vaga Ap 1905; align: center; width:4; color:#000; zOffset:0.06"
+                geometry="primitive: box; width:2; height:0.5; depth:0.1"material="color:#999" onclick="mudarCena('cenaVaga1905')"
+                event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+                event-set__mouseleave="_event: mouseleave; material.color: #999"
+                event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+                <a-entity id="EstacText4" position="0 0 -0.1" scale="0.5 0.5 0.2"
+                text="value:  Vaga Ap 2104; align: center; width:4; color:#000; zOffset:0.06"
+                geometry="primitive: box; width:2; height:0.5; depth:0.1" material="color:#999" onclick="mudarCena('cenaVaga2104')"
+                event-set__mouseenter="_event: mouseenter; material.color: #ADADAD"
+                event-set__mouseleave="_event: mouseleave; material.color: #999"
+                event-set__click="_event: click; material.color: #B4B4B4"></a-entity>
+            </a-entity>
+
         </a-entity>
       </a-entity>
       
       <!--Cena Estacionamento 1801-->
-      <a-entity class="cena" id="cenaEstacionamento1801" visible="false">
+      <a-entity class="cena" id="cenaVaga1801" visible="false">
         <a-sky
-          src="#EstacionamentoCoberto"
+          src="#Vaga1801"
           radius="30"
           rotation="0 0 0"
         ></a-sky>
@@ -438,12 +469,72 @@
         </a-entity>
       </a-entity>
 
+      <!--Cena Estacionamento 1903-->
+      <a-entity class="cena" id="cenaVaga1903" visible="false">
+        <a-sky
+          src="#Vaga1903"
+          radius="30"
+          rotation="0 0 0"
+        ></a-sky>
+        <a-entity >
+          <!--Elevador-->
+          <a-entity position="0 0 -4" look-at="#cam">
+            <a-image
+              src="#marco"
+              width="0.5"
+              height="0.5"
+              color="#FFF"
+              onclick="mudarCena('cenaElevador')"
+              event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
+              event-set__mouseleave="scale: 1 1 1; color:#fff"
+              proxy-event="event: click; to: #cam; as: fade"
+            ></a-image>
+            <a-text
+              text="width:  5;  value:  Elevador; align: center "
+              position="0 -0.5 0"
+            ></a-text>
+          </a-entity>
+        
+
+        </a-entity>
+      </a-entity>
+
+      <!--Cena Estacionamento 1801-->
+      <a-entity class="cena" id="cenaVaga1905" visible="false">
+        <a-sky
+          src="#Vaga1905"
+          radius="30"
+          rotation="0 0 0"
+        ></a-sky>
+        <a-entity >
+          <!--Elevador-->
+          <a-entity position="1 0 -3" look-at="#cam">
+            <a-image
+              src="#marco"
+              width="0.5"
+              height="0.5"
+              color="#FFF"
+              onclick="mudarCena('cenaElevador')"
+              event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
+              event-set__mouseleave="scale: 1 1 1; color:#fff"
+              proxy-event="event: click; to: #cam; as: fade"
+            ></a-image>
+            <a-text
+              text="width:  5;  value:  Elevador; align: center "
+              position="0 -0.5 0"
+            ></a-text>
+          </a-entity>
+        
+
+        </a-entity>
+      </a-entity>
+
       <!--Cena Estacionamento Cima-->
-      <a-entity class="cena" id="cenaEstacionamentoCima" visible="false" >
+      <a-entity class="cena" id="cenaVaga2104" visible="false" >
 
         <a-sky
           id="sky"
-          src="#EstacionamentoCima"
+          src="#Vaga2104"
           radius="50"
           rotation="0 -45 0"
           cursor-listener

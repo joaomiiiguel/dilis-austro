@@ -105,8 +105,8 @@
   <body >
     <a-scene  vr-mode-ui="enabled: false" renderer="antialias: true">
       <a-assets>
-        <img id="logo" src="assets/logo.png">
-        <img id="marco" src="https://cdn.glitch.com/07e6f369-c779-4206-a66d-caec139b3eb9%2Fpiscina_icon_B.png?v=1601656746275" />
+        <img id="logo" src="assets\AustroFranca-Logo.png">
+        <img id="marco" src="assets\direction2.png" />
         <img id="corredorEntrada" src="assets\1801\Entrada_1.JPG" />
         <img id="salaCentro" src="assets\1801\Sala_Centro.JPG" />
         <img id="salaVista" src="assets\1801\Sala_Vista.JPG" />
@@ -133,16 +133,19 @@
           look-controls
           movement-controls
           cursor="rayOrigin: mouse"
-          animation__fade="property: position; to: 0 1 -5; dur: 400; startEvents: fade; delay: 100"
-          animation__fadeOut="property: position; to: 0 1 0; dur: 0; delay: 500; startEvents: fade">
+          >
           <!--animation__fade="property: position; to: 0 1 -5; dur: 400; startEvents: fade; delay: 100"
           animation__fadeOut="property: position; to: 0 1 0; dur: 0; delay: 500; startEvents: fade"-->
         </a-camera>
+        <a-image
+            src="#logo"
+            width="1"
+            height="1"
+            position="0 -0.8 0"
+            rotation="-90 0 0"
+          ></a-image>
       </a-entity>
 
-      <div class="custom-img">
-        <img class="img-logo" src="assets/logo.png">
-      </div>
       
       <div class="custom-select">
       <select id="rooms" name="rooms" onchange="getSelectValue()">
@@ -269,7 +272,7 @@
           ></a-text>
         </a-entity>
         <!--Ponto para Corredor-->
-        <a-entity position="4 -1 7" look-at="#cam">
+        <a-entity position="2 -1 5" look-at="#cam">
           <a-image
             src="#marco"
             width="0.5"
