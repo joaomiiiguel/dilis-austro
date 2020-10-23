@@ -365,7 +365,7 @@
 
     <!--Cena Piscina-->
     <a-entity class="cena" id="cenaPiscina" visible="false">
-      <a-sky src="#Piscina_1" radius="50" rotation="0 30 0"></a-sky>
+      <a-sky src="#Piscina_1" radius="50" rotation="0 20 0"></a-sky>
 
       <!--Ponto para Churrasqueira-->
       <a-entity position="5 1 -1" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
@@ -389,32 +389,32 @@
 
     <!--Cena Piscina Grande-->
     <a-entity class="cena" id="cenaPiscinaGrande" visible="false">
-      <a-sky src="#Piscina_2" radius="50" rotation="0 -90 0"></a-sky>
+      <a-sky src="#Piscina_2" radius="50" rotation="0 -130 0"></a-sky>
 
       <!--Ponto para Entrada Piscina-->
-      <a-entity position="6 1 -1" look-at="#cam">
-        <a-image src="#marco" width="0.4" height="0.2" color="#FFF" onclick="mudarCena('cenaPiscina')"
-          event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
-          event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
-          proxy-event="event: click; to: #cam; as: fade"></a-image>
-
-        <a-text text="width:  4;  value:  Entrada Piscina; align: center " position="0 -0.3 0"></a-text>
+      
+      <a-entity position="6 1 -0.5" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaPiscina')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Entrada Piscina; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
 
       <!--Ponto para Espaço Zen-->
-      <a-entity position="-3 1 -5" look-at="#cam">
-        <a-image src="#marco" width="0.4" height="0.2" color="#FFF" onclick="mudarCena('cenaZen')"
-          event-set__mouseenter="_event: mouseenter; scale: 1.2 1.2 1; color:#c5c5c5"
-          event-set__mouseleave="_event: mouseleave; scale: 1 1 1; color:#fff"
-          proxy-event="event: click; to: #cam; as: fade"></a-image>
-
-        <a-text text="width:  4;  value:  Area Zen; align: center " position="0 -0.3 0"></a-text>
+      
+      <a-entity position="-3 0.5 -5" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaZen')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Area Zen; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
     </a-entity>
 
     <!--Cena Area Zen-->
     <a-entity class="cena" id="cenaZen" visible="false">
-      <a-sky src="#Zen_1" radius="50" rotation="0 135 0"></a-sky>
+      <a-sky src="#Zen_1" radius="50" rotation="0 150 0"></a-sky>
 
       <!--Ponto para Entrada Piscina-->
       
