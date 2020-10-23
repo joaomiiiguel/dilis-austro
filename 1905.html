@@ -1,148 +1,143 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Austro Franca - AP 1905</title>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
-    <style>
-      .custom-img{
-        position: fixed;
-        top: 2em;
-        left: 2em;
-        display: flex;
-        z-index: 1;
+
+<head>
+  <meta charset="utf-8" />
+  <title>Austro Franca - AP 1905</title>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+  <style>
+    .custom-img {
+      position: fixed;
+      top: 2em;
+      left: 2em;
+      display: flex;
+      z-index: 1;
+    }
+
+    .img-logo {
+      display: flex;
+      width: 15%;
+      height: auto;
+      min-width: 100px;
+    }
+
+    .custom-select {
+      position: fixed;
+      top: 2em;
+      right: 2em;
+      min-width: 15%;
+      text-align: right;
+      z-index: 1;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .custom-select>* {
+      pointer-events: auto;
+    }
+
+    #rooms {
+      height: 30px;
+      padding: 5px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-voltar {
+      border: 1px solid grey;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.5);
+      color: black;
+      padding: 5px 15px;
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+  </style>
+
+  <script>
+    AFRAME.registerComponent('cursor-listener', {
+      init: function () {
+        this.el.addEventListener('click', (pointCam) => {
+          console.log('I was clicked at: ', pointCam.detail.intersection.point);
+        });
       }
-      .img-logo{
-        display: flex;
-        width:15%;
-        height:auto;
-        min-width: 100px;
-      }
-      .custom-select{
-        position: fixed;
-        top: 2em;
-        right: 2em;
-        min-width: 15%;
-        text-align: right;
-        z-index: 1;
-        pointer-events: none;
-        display: flex;
-        flex-direction: column;
-      }
-      .custom-select>* {
-        pointer-events: auto;
-      }
-      #rooms{
-          height: 30px;
-          padding: 5px 12px;
-          border-radius: 5px;
-          cursor: pointer;
-          background-color:rgba(255, 255, 255, 0.5);
-      }
-      .btn-voltar{
-        border: 1px solid grey;
-        border-radius: 5px;
-        background-color:rgba(255, 255, 255, 0.5);
-        color: black;
-        padding: 5px 15px;
-        font-size: 13px;
-        cursor: pointer;
-        margin-top: 5px;
-      }
-    </style>
+    });
 
-    <script>
-      AFRAME.registerComponent('cursor-listener', {
-        init: function () {
-          this.el.addEventListener('click', (pointCam) => {
-            console.log('I was clicked at: ', pointCam.detail.intersection.point);
-          });
-        }
-      });
-        
-        var CenaAtual = "cenaEntrada";
-        
-        
-        
-        //Função pegar o valor da caixa select
-        function getSelectValue(){
-            var selectedValue = document.getElementById("rooms").value;
-            mudarCena(selectedValue);
-            selectedValue = CenaAtual;
-        }
+    var CenaAtual = "cenaEntrada";
 
 
-        function sleep(ms) {
-          return new Promise(
-            resolve => setTimeout(resolve, ms)
-          );
-        }
+
+    //Função pegar o valor da caixa select
+    function getSelectValue() {
+      var selectedValue = document.getElementById("rooms").value;
+      mudarCena(selectedValue);
+      selectedValue = CenaAtual;
+    }
 
 
-        async function mudarCena(CenaAlvo){
-          await sleep(500);
-          document.getElementById(CenaAtual).setAttribute("visible", "false");
-          document.getElementById(CenaAlvo).setAttribute("visible", "true");
-          
-          
-          console.log("Cena atual é " + CenaAtual);
-          CenaAtual = CenaAlvo;
-          console.log("Cena de destino é " + CenaAlvo);
-        }
+    function sleep(ms) {
+      return new Promise(
+        resolve => setTimeout(resolve, ms)
+      );
+    }
 
 
-      
-    </script>
-    
-  </head>
-  <body >
-    <a-scene  vr-mode-ui="enabled: false" renderer="antialias: true">
-      <a-assets>
-        <img id="logo" src="assets\AustroFranca-Logo.png">
-        <img id="marco" src="assets\seta.png"/>
-        <img id="corredorEntrada" src="assets\1905\Varanda.JPG" />
-        <img id="salaCentro" src="assets\1905\SalaCentro.JPG" />
-        <img id="salaVista" src="assets\1905\SalaVista.JPG" />
-        <img id="cozinha" src="assets\1905\Cozinha.JPG" />
-        <img id="corredor" src="assets\1905\Corredor.JPG" />
-        <img id="banheiro" src="assets\1905\BanheiroCentral.JPG" />
-        <img id="quarto1" src="assets\1905\Quarto1Vista.JPG" />
-        <img id="quarto2" src="assets\1905\Quarto2Vista.JPG"/>
-        <img id="quarto3" src="assets\1905\Quarto3Vista.JPG"/>
-        <img id="quarto3Suite" src="assets\1905\SuiteQuarto3.JPG"/>
-        
-      </a-assets>
+    async function mudarCena(CenaAlvo) {
+      await sleep(500);
+      document.getElementById(CenaAtual).setAttribute("visible", "false");
+      document.getElementById(CenaAlvo).setAttribute("visible", "true");
 
-      
-      <a-entity id="IDCam" position="0 0 0" rotation="0 90 0">
-        <a-camera
-          id="cam"
-          camera="fov:  40; zoom:  0.6"
-          wasd-controls="enabled:false"
-          look-controls
-          movement-controls
-          cursor="rayOrigin: mouse"
-          >
-          <!--animation__fade="property: position; to: 0 1 -5; dur: 400; startEvents: fade; delay: 100"
+
+      console.log("Cena atual é " + CenaAtual);
+      CenaAtual = CenaAlvo;
+      console.log("Cena de destino é " + CenaAlvo);
+    }
+
+
+
+  </script>
+
+</head>
+
+<body>
+  <a-scene vr-mode-ui="enabled: false" renderer="antialias: true">
+    <a-assets>
+      <img id="logo" src="assets\AustroFranca-Logo.png">
+      <img id="marco" src="assets\seta.png" />
+      <img id="corredorEntrada" src="assets\1905\Varanda.JPG" />
+      <img id="salaCentro" src="assets\1905\SalaCentro.JPG" />
+      <img id="salaVista" src="assets\1905\SalaVista.JPG" />
+      <img id="cozinha" src="assets\1905\Cozinha.JPG" />
+      <img id="corredor" src="assets\1905\Corredor.JPG" />
+      <img id="banheiro" src="assets\1905\BanheiroCentral.JPG" />
+      <img id="quarto1" src="assets\1905\Quarto1Vista.JPG" />
+      <img id="quarto2" src="assets\1905\Quarto2Vista.JPG" />
+      <img id="quarto3" src="assets\1905\Quarto3Vista.JPG" />
+      <img id="quarto3Suite" src="assets\1905\SuiteQuarto3.JPG" />
+
+    </a-assets>
+
+
+    <a-entity id="IDCam" position="0 0 0" rotation="0 90 0">
+      <a-camera id="cam" camera="fov:  40; zoom:  0.6" wasd-controls="enabled:false" look-controls movement-controls
+        cursor="rayOrigin: mouse">
+        <!--animation__fade="property: position; to: 0 1 -5; dur: 400; startEvents: fade; delay: 100"
           animation__fadeOut="property: position; to: 0 1 0; dur: 0; delay: 500; startEvents: fade"-->
-        </a-camera>
-        <a-image
-            src="#logo"
-            width="1"
-            height="1"
-            position="0 -0.5 0"
-            rotation="-90 90 0"
-          ></a-image>
+      </a-camera>
+      <a-image src="#logo" width="1" height="1" position="0 -0.5 0" rotation="-90 90 0"></a-image>
 
-      </a-entity>
-      
-      <div class="custom-select">
+    </a-entity>
+
+    <div class="custom-select">
       <select id="rooms" name="rooms" onchange="getSelectValue()">
         <option selected disabled>Selecione um cômodo:</option>
         <option value="cenaEntrada">Entrada</option>
@@ -160,506 +155,277 @@
       <a href="/index.html">
         <button class="btn-voltar">Voltar ao Inicio</button>
       </a>
-      
+
     </div>
-    
-      <!--Cena Entrada-->
-      <a-entity class="cena" id="cenaEntrada" visible="true" >
 
-        <a-sky
-          id="sky"
-          src="#corredorEntrada"
-          radius="50"
-          rotation="0 0 0"
-          cursor-listener
-          material= "opacity: 1"
-          
-        ></a-sky>
-        
-        <!--Ponto para Entrar-->
-        <a-entity position="-2 0.5 2" look-at="#cam">
-          <a-image
-            src="#marco"
-            class="button"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaSala')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-            proxy-event="event: click; to: #sky; as: opaciSky"
-            animation__fade1="property: material.opacity; to: 0; dur: 300; startEvents: opaciSky"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Entrar; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>        
+    <!--Cena Entrada-->
+    <a-entity class="cena" id="cenaEntrada" visible="true">
+
+      <a-sky id="sky" src="#corredorEntrada" radius="50" rotation="0 0 0" cursor-listener material="opacity: 1"></a-sky>
+
+      <!--Ponto para Entrar-->
+      <a-entity position="-2 0.5 2" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaSala')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Entrar; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
 
-      <!--Cena Centro da Sala-->
-      <a-entity class="cena" id="cenaSala" visible="false"  >
-        <a-sky
-          src="#salaCentro"
-          radius="50"
-          rotation="0 0 0"
-        ></a-sky>
+    </a-entity>
 
-        
-        <!--Ponto para Saida-->
-        <a-entity position="-3 0.5 3" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaCozinha')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Cozinha; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
+    <!--Cena Centro da Sala-->
+    <a-entity class="cena" id="cenaSala" visible="false">
+      <a-sky src="#salaCentro" radius="50" rotation="0 0 0"></a-sky>
 
-        <!--Ponto para Saida-->
-        <a-entity position="-5 0.5 1" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaCorredor')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Corredor; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
 
-        <!--Ponto para Cozinha-->
-        <a-entity position="-1.5 0.5 5" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaEntrada')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Sair; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
-        <!--Ponto para Vista-->
-        <a-entity position="-3 -1 -3.5" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaVistaSala')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value: Vista da Sala; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
+      <!--Ponto para Cozinha-->
+      <a-entity position="-3 0.5 3" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaCozinha')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Cozinha; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
 
-      <!--Cena Vista da Sala-->
-      <a-entity class="cena" id="cenaVistaSala" visible="false">
-        <a-sky
-          src="#salaVista"
-          radius="50"
-          rotation="0 0 0"
-        ></a-sky>
-
-        <!--Ponto para Corredor-->
-        <a-entity position="-1.5 0.5 -4" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaCorredor')"
-            event-set__FadeIn="property: material.opacity; _target:#cenaVistaSala; to: 0; startEvents: click; dur: 500"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Corredor; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
-        <!--Ponto para Sala-->
-        <a-entity position="-3 0 0" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaSala')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Sala; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
+      <!--Ponto para Saida-->
+      <a-entity position="-5 0.5 1" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaCorredor')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Corredor; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
 
-      <!--Cena Corredor-->
-      <a-entity class="cena" id="cenaCorredor" visible="false">
-        <a-sky
-          src="#corredor"
-          radius="50"
-          rotation="0 180 0"
-        ></a-sky>
-        
-        <!--Ponto para Sala-->
-        <a-entity position="-4 1 -1" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaSala')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Sala; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
-        
-        <!--Ponto para Vista-->
-        <a-entity position="-4.5 -1 2.5" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaVistaSala')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Vista; align: center"
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
-
-        <!--Ponto para Sair-->
-        <a-entity position="1 0.5 -4" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaEntrada')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Sair; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
-        
-        <!--Ponto para Quarto 1-->
-        <a-entity position="3.2 0 1.2" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaQuarto1')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Quarto 1; align: center "
-            position="0 -0.3 0"
-          ></a-text>
-        </a-entity>
-
-        <!--Ponto para Quarto 2-->
-        <a-entity position="6 0 2" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaQuarto2')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Quarto 2; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
-
-        <!--Ponto para Quarto 3-->
-        <a-entity position="7 0 1.4" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaQuarto3')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Quarto 3; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
-
-        <!--Ponto para Banheiro-->
-        <a-entity position="6 0 0.5" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaBanheiro')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Banheiro; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
-        
+      <!--Ponto para Cozinha-->
+      <a-entity position="-1.5 0.5 5" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaEntrada')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Sair; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
 
-      <!--Cena Cozinha - Falta-->
-      <a-entity class="cena" id="cenaCozinha" visible="false">
-        <a-sky
-          src="#cozinha"
-          radius="50"
-          rotation="0 180 0"
-        ></a-sky>
-        <!--Ponto para Sala-->
-        <a-entity position="-4 -1 0" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaSala')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Sala; align: center"
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
+      <!--Ponto para Vista-->
+      <a-entity position="-3 -1 -3.5" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaVistaSala')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Vista da Sala; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
+
+    </a-entity>
+
+    <!--Cena Vista da Sala-->
+    <a-entity class="cena" id="cenaVistaSala" visible="false">
+      <a-sky src="#salaVista" radius="50" rotation="0 0 0"></a-sky>
+
+
+      <!--Ponto para Saida-->
+      <a-entity position="-1.5 0.5 -4" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaCorredor')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Corredor; align: center " position="0 -0.1 0.02"></a-text>
+      </a-entity>
+
+      <!--Ponto para Sala-->
+      <a-entity position="-3 0 0" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaSala')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Sala; align: center " position="0 -0.1 0.02"></a-text>
+      </a-entity>
+
+    </a-entity>
+
+    <!--Cena Corredor-->
+    <a-entity class="cena" id="cenaCorredor" visible="false">
+      <a-sky src="#corredor" radius="50" rotation="0 180 0"></a-sky>
+
+      <!--Ponto para Sala-->
+      <a-entity position="-4 0 -1" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaSala')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Sala; align: center " position="0 -0.1 0.02"></a-text>
+      </a-entity>
+
+
+      <!--Ponto para Vista-->
+      <a-entity position="-2.5 -1 2.5" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaVistaSala')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Vista; align: center " position="0 -0.1 0.02"></a-text>
+      </a-entity>
+
+
+      <!--Ponto para Sair-->
+      <a-entity position="1 0.5 -4" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaEntrada')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Sair; align: center " position="0 -0.1 0.02"></a-text>
+      </a-entity>
+
+
+      <!--Ponto para Quarto 1-->
+      <a-entity position="3.2 0 1.2" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaQuarto1')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Quarto 1; align: center " position="0 -0.1 0.02"></a-text>
+      </a-entity>
+
+      <!--Ponto para Quarto 2-->
+      <a-entity position="6 0 2" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaQuarto2')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Quarto 2; align: center " position="0 -0.1 0.02"></a-text>
+      </a-entity>
+
+
+      <!--Ponto para Quarto 3-->
+      <a-entity position="7 0 1.4" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaQuarto3')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Quarto 3; align: center " position="0 -0.1 0.02"></a-text>
+      </a-entity>
+
+      <!--Ponto para Banheiro-->
+      <a-entity position="6 0 0.5" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaBanheiro')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Banheiro; align: center " position="0 -0.1 0.02"></a-text>
+      </a-entity>
+
+    </a-entity>
+
+    <!--Cena Cozinha -->
+    <a-entity class="cena" id="cenaCozinha" visible="false">
+      <a-sky src="#cozinha" radius="50" rotation="0 180 0"></a-sky>
+      <!--Ponto para Sala-->
+      <a-entity position="-4 0 0" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaSala')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Sala; align: center " position="0 -0.1 0.02"></a-text>
+      </a-entity>
+    </a-entity>
+
+    <!--Cena Quarto Principal-->
+    <a-entity class="cena" id="cenaQuarto1" visible="false">
+      <a-sky src="#quarto1" radius="50" rotation="0 0 0"></a-sky>
+
+      <!--Ponto para Corredor-->
+
+      <a-entity position="-4 1 0" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaCorredor')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Corredor; align: center " position="0 -0.1 0.02"></a-text>
+      </a-entity>
+
+    </a-entity>
+
+
+    <!--Cena Quarto 2-->
+    <a-entity class="cena" id="cenaQuarto2" visible="false">
+      <a-sky src="#quarto2" radius="50" rotation="0 -45 0"></a-sky>
       
-      <!--Cena Quarto Principal-->
-      <a-entity class="cena" id="cenaQuarto1" visible="false">
-        <a-sky
-          src="#quarto1"
-          radius="50"
-          rotation="0 0 0"
-        ></a-sky>
-
-        <!--Ponto para Corredor-->
-        <a-entity position="-4 1 0" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaCorredor')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Corredor; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
-        
-        
-        
+      <!--Ponto para Corredor-->
+      <a-entity position="-4 0 -2.5" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaCorredor')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Corredor; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
 
 
-      <!--Cena Quarto 2-->
-      <a-entity class="cena" id="cenaQuarto2" visible="false">
-        <a-sky
-          src="#quarto2"
-          radius="50"
-          rotation="0 -45 0"
-        ></a-sky>
+    </a-entity>
 
-        <!--Ponto para Vista-->
-        <a-entity position="-4 0 -2.5" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaCorredor')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Corredor; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
-        
-        
+
+    <!--Cena Quarto 3-->
+    <a-entity class="cena" id="cenaQuarto3" visible="false">
+      <a-sky src="#quarto3" radius="50" rotation="0 180 0"></a-sky>
+
+      <!--Ponto para Suite-->
+      <a-entity position="4 1 -1" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaSuiteQuarto3')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Suite; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
 
-
-      <!--Cena Quarto 3-->
-      <a-entity class="cena" id="cenaQuarto3" visible="false">
-        <a-sky
-          src="#quarto3"
-          radius="50"
-          rotation="0 180 0"
-        ></a-sky>
-        
-        <!--Ponto para Suite-->
-        <a-entity position="4 1 -1" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaSuiteQuarto3')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Suite; align: center "
-            position="0 -0.3 0"
-          ></a-text>
-        </a-entity>
-
-        <!--Ponto para Corredor-->
-        <a-entity position="4 1 -2" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaCorredor')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Corredor; align: center "
-            position="0 -0.3 0"
-          ></a-text>
-        </a-entity>
-        
-        
+      <!--Ponto para Corredor-->
+      <a-entity position="4 1 -2" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaCorredor')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Corredor; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
 
-      <!--Cena Vista do Quarto 3-->
-      <a-entity class="cena" id="cenaSuiteQuarto3" visible="false">
-        <a-sky
-          src="#quarto3Suite"
-          radius="50"
-          rotation="0 -45 0"
-        ></a-sky>
-        <!--Ponto para Quarto-->
-        <a-entity position="3 0 1" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaQuarto3')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Quarto; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
-                
-      </a-entity>
+    </a-entity>
 
-     
-      <!--Cena Banheiro-->
-      <a-entity class="cena" id="cenaBanheiro" visible="false">
-        <a-sky
-          src="#banheiro"
-          radius="50"
-          rotation="0 -45 0"
-        ></a-sky>
-        <!--Ponto para Quarto-->
-        <a-entity position="2.3 -1 2.8" look-at="#cam">
-          <a-image
-            src="#marco"
-            width="0.5"
-            height="0.3"
-            color="#FFF"
-            onclick="mudarCena('cenaCorredor')"
-            event-set__mouseenter="scale: 1.2 1.2 1; color:#c5c5c5"
-            event-set__mouseleave="scale: 1 1 1; color:#fff"
-            proxy-event="event: click; to: #cam; as: fade"
-          ></a-image>
-          <a-text
-            text="width:  5;  value:  Corredor; align: center "
-            position="0 -0.5 0"
-          ></a-text>
-        </a-entity>
-                
+    <!--Cena Vista do Quarto 3-->
+    <a-entity class="cena" id="cenaSuiteQuarto3" visible="false">
+      <a-sky src="#quarto3Suite" radius="50" rotation="0 -45 0"></a-sky>
+
+      <!--Ponto para Quarto-->
+      <a-entity position="3 0 1" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaQuarto3')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Quarto; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
+    </a-entity>
+
+
+    <!--Cena Banheiro-->
+    <a-entity class="cena" id="cenaBanheiro" visible="false">
+      <a-sky src="#banheiro" radius="50" rotation="0 -45 0"></a-sky>
       
- 
-      
-    </a-scene>
-    
-    
+      <!--Ponto para Corredor-->
+      <a-entity position="2.3 -1 2.8" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
+        event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
+        onclick="mudarCena('cenaCorredor')">
+        <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
+        <a-text text="width:  4;  value:  Corredor; align: center " position="0 -0.1 0.02"></a-text>
+      </a-entity>
+    </a-entity>
 
-    <!--Função de Alterar Cena-->
-    <script type="text/javascript">
 
-        
 
-       
+  </a-scene>
 
-    </script>
+
+
+  <!--Função de Alterar Cena-->
+  <script type="text/javascript">
+
+
+
+
+
+  </script>
