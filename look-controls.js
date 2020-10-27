@@ -1,5 +1,5 @@
 /* global DeviceOrientationEvent  */
-var registerComponent = require('../core/component').registerComponent;
+var registerComponent = require('https://raw.githubusercontent.com/aframevr/aframe/master/docs/core/component.md').registerComponent;
 var THREE = require('../lib/three');
 var utils = require('../utils/');
 var bind = utils.bind;
