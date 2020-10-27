@@ -301,7 +301,7 @@
 
 
       <!--Ponto para Quarto 3-->
-      <a-entity position="7 0 1.4" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+      <a-entity position="7 0.3 1.4" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
         material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
         event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
         onclick="mudarCena('cenaQuarto3|cenaSuiteQuarto3|cenaCorredor')">
@@ -391,7 +391,7 @@
 
     </a-entity>
 
-    <!--Cena Vista do Quarto 3-->
+    <!--Cena Suite do Quarto 3-->
     <a-entity class="cena" id="cenaSuiteQuarto3|cenaQuarto3" visible="false">
       <a-sky src="#quarto3Suite" radius="50" rotation="0 -45 0"></a-sky>
 
@@ -399,7 +399,7 @@
       <a-entity position="3 0 1" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
         material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
         event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
-        onclick="mudarCena('cenaQuarto3|cenaSuiteQuarto3|cenaCorredor')">
+        onclick="mudarCena('cenaQuarto3|cenaSuiteQuarto3')">
         <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
         <a-text text="width:  4;  value:  Quarto; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
@@ -425,12 +425,5 @@
   </a-scene>
 
 
-
-  <!--Função de Alterar Cena-->
-  <script type="text/javascript">
-
-
-
-
-
-  </script>
+</body>
+</html>

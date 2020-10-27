@@ -275,7 +275,7 @@
       <a-entity position="-1.5 0 4" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
         material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
         event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
-        onclick="mudarCena('cenaVistaSala')">
+        onclick="mudarCena('cenaVistaSala|cenaCorredor|cenaSala')">
         <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
         <a-text text="width:  4;  value:  Vista da sala; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
@@ -303,7 +303,7 @@
       <a-entity position="6 -1 0.5" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
         material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
         event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
-        onclick="mudarCena('cenaQuarto1')">
+        onclick="mudarCena('cenaQuarto1|cenaCorredor')">
         <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
         <a-text text="width:  4;  value:  Quarto 1; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
@@ -338,9 +338,9 @@
       <a-entity position="0 0 5" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
         material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
         event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
-        onclick="mudarCena('cenaServico')">
+        onclick="mudarCena('cenaServico|cenaCozinha')">
         <a-image src="#marco" class="button" width="0.4" height="0.2" color="#FFF" position="0 0.1 0.02"></a-image>
-        <a-text text="width:  5;  value:  Area de Serviço; align: center " position="0 -0.1 0.02"></a-text>
+        <a-text text="width:  5;  value:  Area de Servico; align: center " position="0 -0.1 0.02"></a-text>
       </a-entity>
     </a-entity>
 
