@@ -145,16 +145,15 @@
 </head>
 
 <body>
-
-  <a-scene vr-mode-ui="enabled: false" renderer="antialias: true" 
-  device-orientation-permission-ui="
-    denyButtonText: Não;
-    allowButtonText: Sim;
-    cancelButtonText: Cancelar;                                                 
+<!--vr-mode-ui="enabled: false" renderer="antialias: true"-->
+<a-scene background="color: #ECECEC" device-orientation-permission-ui="
+    denyButtonText: Negar;
+    allowButtonText: Permitir;
+    cancelButtonText: Fechar;                                                 
     deviceMotionMessage: Este site imersivo requer acesso aos sensores de movimento do dispositivo.;
-    mobileDestkopMessage: Configure seu navegador para solicitar a versão móvel do site e recarregue a página para desfrutar do modo imersivo.;                    
+    mobileDestkopMessage: Configure seu navegador para solicitar a versão móvel do site e recarregue a página para desfrutar do modo imersivo.;                                                    
     httpsMessage: Acesse este site por HTTPS para entrar no modo VR e conceder acesso aos sensores do dispositivo.">
-
+   
     <a-assets>
       <img id="logo" src="assets\AustroFranca-Logo.png">
       <img id="marco" src="assets\seta.png" />
