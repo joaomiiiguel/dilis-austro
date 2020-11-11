@@ -4,8 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Austro Franca - Dilis</title>
-  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@5b021017b062750a81dfdaf35033938da8924680/dist/aframe-master.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@deb8837aa0af8b5ee6de2d73fef7bc2e07984581/dist/aframe-master.min.js"></script>
   <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
   <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
   <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
@@ -41,7 +40,7 @@
 
 
   <script>
-  
+
     var CenaAtual = "cenaPortaria|cenaEntrada";
 
     //Função pegar o valor da caixa select
@@ -147,9 +146,15 @@
 
 <body>
 
-  <a-scene vr-mode-ui="enabled: false" renderer="antialias: true"
-    device-orientation-permission-ui="deviceMotionMessage: XXX YYY ZZZ; mobileDestkopMessage: TEstando" >
-    
+  <a-scene vr-mode-ui="enabled: false" renderer="antialias: true" 
+  device-orientation-permission-ui="
+    denyButtonText: Não;
+    allowButtonText: Sim;
+    cancelButtonText: Cancelar;                                                 
+    deviceMotionMessage: Este site imersivo requer acesso aos sensores de movimento do dispositivo.;
+    mobileDestkopMessage: Configure seu navegador para solicitar a versão móvel do site e recarregue a página para desfrutar do modo imersivo.;                    
+    httpsMessage: Acesse este site por HTTPS para entrar no modo VR e conceder acesso aos sensores do dispositivo.">
+
     <a-assets>
       <img id="logo" src="assets\AustroFranca-Logo.png">
       <img id="marco" src="assets\seta.png" />
@@ -251,7 +256,7 @@
       <a-sky src="#HallEntrada" radius="50" rotation="0 0 0"></a-sky>
       <a-entity>
         <!--Ponto para Elevador-->
-        <a-entity position="-3 1 1" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+        <a-entity position="-2 1.2 0.5" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
           material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
           event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
           onclick="mudarCena('cenaElevador|cenaHall|cenaEstacionamento|cenaChurrasco|cenaMulher|cenaKids|cenaBrinquedoteca|cenaJogos1|cenaJogos2|cenaFestas|cenaAcademia')">
@@ -488,7 +493,7 @@
       <a-sky id="sky" src="#Churrasco" radius="50" rotation="0 120 0" cursor-listener></a-sky>
 
       <!--Ponto para Elevador-->
-      <a-entity position="-3 1 1" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+      <a-entity position="-3 1.5 0.4" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
         material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
         event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
         onclick="mudarCena('cenaElevador|cenaHall|cenaEstacionamento|cenaChurrasco|cenaMulher|cenaKids|cenaBrinquedoteca|cenaJogos1|cenaJogos2|cenaFestas|cenaAcademia')">
@@ -521,7 +526,7 @@
       </a-entity>
 
       <!--Ponto para Piscina Grande-->
-      <a-entity position="-5 1 1" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+      <a-entity position="-3 1.2 1" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
         material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
         event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
         onclick="mudarCena('cenaPiscinaGrande|cenaPiscina|cenaZen')">
@@ -537,7 +542,7 @@
 
       <!--Ponto para Entrada Piscina-->
 
-      <a-entity position="6 1 -0.5" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
+      <a-entity position="4 1 -0.5" look-at="#cam" geometry="primitive: plane; width: 0.5; height: 0.5"
         material="opacity:0" event-set__mouseenter="scale: 1.1 1.1 1; color:#c5c5c5"
         event-set__mouseleave="scale: 1 1 1; color:#fff" proxy-event="event: click; to: #cam; as: fade"
         onclick="mudarCena('cenaPiscina|cenaChurrasco|cenaPiscinaGrande|cenaElevador')">
